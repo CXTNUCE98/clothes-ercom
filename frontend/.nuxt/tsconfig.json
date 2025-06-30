@@ -107,7 +107,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/b9ff30f2-18c6-418b-959b-0cc63b7890ec"
+        "./manifest/meta/dev"
       ],
       "#components": [
         "./components"
@@ -157,6 +157,8 @@
     "../node_modules/@element-plus/nuxt/dist/runtime",
     "../node_modules/@vueuse/nuxt/runtime",
     "../node_modules/@vueuse/nuxt/dist/runtime",
+    "../../node_modules/@unocss/nuxt/runtime",
+    "../../node_modules/@unocss/nuxt/dist/runtime",
     "../node_modules/@nuxt/devtools/runtime",
     "../node_modules/@nuxt/devtools/dist/runtime",
     "../node_modules/@nuxt/telemetry/runtime",
@@ -172,6 +174,7 @@
     "../node_modules/@nuxtjs/tailwindcss/node_modules",
     "../node_modules/@element-plus/nuxt/node_modules",
     "../node_modules/@vueuse/nuxt/node_modules",
+    "../../node_modules/@unocss/nuxt/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",
     "../node_modules/@nuxtjs/tailwindcss/runtime/server",
@@ -180,10 +183,12 @@
     "../node_modules/@element-plus/nuxt/dist/runtime/server",
     "../node_modules/@vueuse/nuxt/runtime/server",
     "../node_modules/@vueuse/nuxt/dist/runtime/server",
+    "../../node_modules/@unocss/nuxt/runtime/server",
+    "../../node_modules/@unocss/nuxt/dist/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/devtools/dist/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
     "../node_modules/@nuxt/telemetry/dist/runtime/server",
-    "../.output"
+    "dev"
   ]
 }

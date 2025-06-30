@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@unocss/nuxt": "^66.3.2",
+    "unocss": "^66.3.2"
+  }
+}

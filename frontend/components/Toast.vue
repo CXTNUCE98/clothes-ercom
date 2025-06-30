@@ -1,9 +1,9 @@
 <template>
   <transition name="toast-fade">
-    <div v-if="visible" :class="['fixed z-50 left-1/2 -translate-x-1/2 top-8 min-w-[280px] max-w-xs px-6 py-4 rounded-2xl shadow-lg flex items-center gap-3',
-      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white']">
-      <i :class="type === 'success' ? 'bx bx-check-circle text-2xl' : 'bx bx-error text-2xl'"></i>
-      <span class="font-semibold">{{ message }}</span>
+    <div v-if="visible" :class="['fixed z-50 left-1/2 -translate-x-1/2 top-8 min-w-[300px] max-w-xs px-8 py-5 rounded-2xl shadow-2xl flex items-center gap-4 border-2',
+      type === 'success' ? 'bg-gradient-to-r from-green-400 to-green-600 text-white border-green-300' : 'bg-gradient-to-r from-red-400 to-red-600 text-white border-red-300']">
+      <i :class="type === 'success' ? 'bx bx-check-circle text-3xl' : 'bx bx-error text-3xl'"></i>
+      <span class="font-bold text-lg">{{ message }}</span>
     </div>
   </transition>
 </template>

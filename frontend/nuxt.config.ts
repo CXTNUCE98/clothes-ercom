@@ -4,7 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@element-plus/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    '@unocss/nuxt'
   ],
   css: [
     'boxicons/css/boxicons.min.css',

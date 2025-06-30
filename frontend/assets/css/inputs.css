@@ -4,7 +4,12 @@
 }
 
 .input-with-icon .el-input__wrapper {
-  padding-left: 2.5rem;
+  padding-left: 2.8rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px 0 rgba(80,56,200,0.08);
+  border: 2px solid #a5b4fc;
+  background: #fff;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .input-with-icon .icon {
@@ -24,14 +29,12 @@
 }
 
 /* Element Plus input adjustments */
-.el-input__wrapper {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
 .el-input__wrapper:hover {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px 0 rgba(80,56,200,0.13);
+  border-color: #6366f1;
 }
 
 .el-input__wrapper.is-focus {
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.13), 0 2px 8px 0 rgba(80,56,200,0.08);
+  border-color: #4f46e5;
 } 

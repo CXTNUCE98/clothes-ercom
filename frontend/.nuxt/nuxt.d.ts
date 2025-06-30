@@ -1,6 +1,7 @@
 /// <reference types="@vueuse/nuxt" />
 /// <reference types="@nuxtjs/tailwindcss" />
 /// <reference types="@element-plus/nuxt" />
+/// <reference types="@unocss/nuxt" />
 /// <reference types="@nuxt/devtools" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference path="types/builder-env.d.ts" />

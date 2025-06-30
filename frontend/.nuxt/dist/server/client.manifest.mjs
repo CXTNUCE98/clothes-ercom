@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/WINDOWS/Desktop/WorkSpace/clothes-ercom/frontend/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
