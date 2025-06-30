@@ -1,0 +1,37 @@
+/* Custom styles for input fields with icons */
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .el-input__wrapper {
+  padding-left: 2.5rem;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+/* Boxicons styling */
+.bx {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+/* Element Plus input adjustments */
+.el-input__wrapper {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+} 
