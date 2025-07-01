@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="min-h-screen bg-main-gradient font-sans">
     <div v-if="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-white/60">
-      <span class="text-primary-600 text-2xl font-bold animate-pulse">Đang xác thực đăng nhập...</span>
+      <span class="text-brand-600 text-2xl font-bold animate-pulse">Đang xác thực đăng nhập...</span>
     </div>
     <NuxtLayout v-else>
       <NuxtPage />

@@ -189,12 +189,12 @@ function handleAddedToCart() {
 
 <style scoped>
 .el-input, .el-select {
-  @apply rounded-lg shadow-sm border border-gray-200 focus-within:border-primary-600 transition;
+  @apply rounded-lg shadow-sm border border-gray-200 focus-within:border-brand-600 transition-colors;
 }
 .el-input__wrapper, .el-select__wrapper {
   @apply rounded-lg;
 }
 .el-select-dropdown__item.selected {
-  @apply bg-primary-50 text-primary-600;
+  @apply bg-brand-50 text-brand-600;
 }
 </style> 

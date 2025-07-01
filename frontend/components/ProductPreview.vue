@@ -40,7 +40,7 @@ const addToCart = async () => {
       <div class="relative z-10 bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden animate-scale-in">
         <!-- Close Button -->
         <button 
-          class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-500 hover:text-primary-600 transition-all duration-200 shadow-md"
+          class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-gray-100 text-gray-500 hover:text-brand-600 transition-all duration-200 shadow-md"
           @click="$emit('close')"
           aria-label="Close preview"
         >
@@ -50,7 +50,7 @@ const addToCart = async () => {
         <!-- Content -->
         <div class="flex flex-col md:flex-row">
           <!-- Image Section -->
-          <div class="md:w-1/2 bg-gradient-to-br from-primary-50 to-indigo-50 p-6 md:p-8 flex items-center justify-center">
+          <div class="md:w-1/2 bg-gradient-to-br from-brand-50 to-indigo-50 p-6 md:p-8 flex items-center justify-center">
             <div class="relative w-full h-64 md:h-full aspect-square">
               <img 
                 :src="product.image || '/images/placeholder.jpg'" 
@@ -72,7 +72,7 @@ const addToCart = async () => {
               <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">{{ product.name }}</h2>
               
               <div class="flex items-center gap-2 mb-4">
-                <div class="text-xl md:text-2xl font-extrabold text-primary-600">
+                <div class="text-xl md:text-2xl font-extrabold text-brand-600">
                   {{ formatPrice(product.price) }}
                 </div>
                 <div 

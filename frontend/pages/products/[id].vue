@@ -19,7 +19,7 @@
         class="w-full max-w-md h-96 object-cover rounded-2xl shadow-lg border"
       />
       <div class="flex gap-2 mt-2">
-        <span class="inline-block bg-primary-50 text-primary-600 px-3 py-1 rounded-full text-xs font-semibold">{{ product.category }}</span>
+        <span class="inline-block bg-brand-50 text-brand-600 px-3 py-1 rounded-full text-xs font-semibold">{{ product.category }}</span>
         <span v-if="product.stock > 0" class="inline-block bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">Còn hàng</span>
         <span v-else class="inline-block bg-red-50 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">Hết hàng</span>
       </div>
@@ -28,7 +28,7 @@
     <!-- Product Info -->
     <div class="flex flex-col gap-6 justify-center">
       <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
-      <div class="text-2xl font-bold text-primary-600 mb-4">{{ formatPrice(product.price) }}</div>
+      <div class="text-2xl font-bold text-brand-600 mb-4">{{ formatPrice(product.price) }}</div>
       <div class="text-gray-600 leading-relaxed mb-4">{{ product.description }}</div>
       <div class="flex items-center gap-4 mb-4">
         <span class="text-gray-700 font-medium">Số lượng còn lại:</span>
@@ -57,7 +57,7 @@
         </component>
       </div>
       <!-- Back to Products -->
-      <NuxtLink to="/products" class="inline-flex items-center gap-2 text-primary-600 hover:underline text-sm font-medium mt-2">
+      <NuxtLink to="/products" class="inline-flex items-center gap-2 text-brand-600 hover:underline text-sm font-medium mt-2">
         <i class="bx bx-arrow-back"></i>
         Quay lại danh sách sản phẩm
       </NuxtLink>

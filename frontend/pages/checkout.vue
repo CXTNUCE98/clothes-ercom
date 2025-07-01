@@ -96,7 +96,7 @@
           </div>
           <div class="flex justify-between text-lg font-bold mt-2">
             <span>Tổng cộng:</span>
-            <span class="text-primary-600">{{ formatPrice(total) }}</span>
+            <span class="text-brand-600">{{ formatPrice(total) }}</span>
           </div>
         </div>
         

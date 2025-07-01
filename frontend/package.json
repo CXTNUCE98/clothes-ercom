@@ -11,14 +11,17 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
     "nuxt": "^3.8.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "@element-plus/nuxt": "^1.0.6",
+    "@nuxtjs/tailwindcss": "^6.8.4",
     "@vueuse/nuxt": "^10.5.0",
-    "element-plus": "^2.4.4",
     "boxicons": "^2.1.4",
-    "@nuxtjs/tailwindcss": "^6.8.4"
+    "element-plus": "^2.4.4"
   }
-} 
+}
