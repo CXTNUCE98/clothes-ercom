@@ -15,6 +15,7 @@ const initDatabase = () => {
         password TEXT NOT NULL,
         name TEXT NOT NULL,
         role TEXT DEFAULT 'user',
+        avatar TEXT,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
       )`);
 
@@ -49,6 +50,18 @@ const initDatabase = () => {
         total REAL NOT NULL,
         status TEXT DEFAULT 'pending',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (userId) REFERENCES users (id)
+      )`);
+
+      // Notifications table
+      db.run(`CREATE TABLE IF NOT EXISTS notifications (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId INTEGER NOT NULL,
+        email INTEGER DEFAULT 1,
+        desktop INTEGER DEFAULT 0,
+        product_updates INTEGER DEFAULT 1,
+        weekly_digest INTEGER DEFAULT 0,
+        important_updates INTEGER DEFAULT 1,
         FOREIGN KEY (userId) REFERENCES users (id)
       )`);
 
