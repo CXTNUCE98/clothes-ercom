@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import { useAuth } from '~/composables/useAuth'
+
+// Apply auth middleware
+definePageMeta({
+  middleware: ['auth']
+})
 
 const route = useRoute()
 const toast = useToast()
+const { user: _user } = useAuth()
 
 const open = ref(false)
 
 const links = [[{
-  label: 'Home',
+  label: 'Trang chủ',
   icon: 'i-lucide-house',
   to: '/',
   onSelect: () => {
@@ -22,51 +29,51 @@ const links = [[{
     open.value = false
   }
 }, {
-  label: 'Customers',
+  label: 'Khách hàng',
   icon: 'i-lucide-users',
   to: '/customers',
   onSelect: () => {
     open.value = false
   }
 }, {
-  label: 'Settings',
+  label: 'Cài đặt',
   to: '/settings',
   icon: 'i-lucide-settings',
   defaultOpen: true,
   type: 'trigger',
   children: [{
-    label: 'General',
+    label: 'Tổng quan',
     to: '/settings',
     exact: true,
     onSelect: () => {
       open.value = false
     }
   }, {
-    label: 'Members',
+    label: 'Thành viên',
     to: '/settings/members',
     onSelect: () => {
       open.value = false
     }
   }, {
-    label: 'Notifications',
+    label: 'Thông báo',
     to: '/settings/notifications',
     onSelect: () => {
       open.value = false
     }
   }, {
-    label: 'Security',
+    label: 'Bảo mật',
     to: '/settings/security',
     onSelect: () => {
       open.value = false
     }
   }]
 }], [{
-  label: 'Feedback',
+  label: 'Phản hồi',
   icon: 'i-lucide-message-circle',
   to: 'https://github.com/nuxt-ui-pro/dashboard',
   target: '_blank'
 }, {
-  label: 'Help & Support',
+  label: 'Hỗ trợ',
   icon: 'i-lucide-info',
   to: 'https://github.com/nuxt/ui-pro',
   target: '_blank'
@@ -74,14 +81,14 @@ const links = [[{
 
 const groups = computed(() => [{
   id: 'links',
-  label: 'Go to',
+  label: 'Điều hướng',
   items: links.flat()
 }, {
   id: 'code',
-  label: 'Code',
+  label: 'Mã nguồn',
   items: [{
     id: 'source',
-    label: 'View page source',
+    label: 'Xem mã nguồn trang',
     icon: 'i-simple-icons-github',
     to: `https://github.com/nuxt-ui-pro/dashboard/blob/main/app/pages${route.path === '/' ? '/index' : route.path}.vue`,
     target: '_blank'
@@ -95,18 +102,18 @@ onMounted(async () => {
   }
 
   toast.add({
-    title: 'We use first-party cookies to enhance your experience on our website.',
+    title: 'Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn.',
     duration: 0,
     close: false,
     actions: [{
-      label: 'Accept',
+      label: 'Đồng ý',
       color: 'neutral',
       variant: 'outline',
       onClick: () => {
         cookie.value = 'accepted'
       }
     }, {
-      label: 'Opt out',
+      label: 'Từ chối',
       color: 'neutral',
       variant: 'ghost'
     }]

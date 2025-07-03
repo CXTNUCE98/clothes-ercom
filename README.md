@@ -1,6 +1,6 @@
 # Clothes E-commerce Project
 
-Project web bán hàng với Nuxt.js frontend và Node.js backend.
+Project web bán hàng với Nuxt.js frontend, Node.js backend và Admin dashboard.
 
 ## Cấu trúc Project
 
@@ -8,6 +8,7 @@ Project web bán hàng với Nuxt.js frontend và Node.js backend.
 clothes-ercom/
 ├── frontend/          # Nuxt.js 3.x frontend
 ├── backend/           # Node.js + Express backend
+├── admin/             # Nuxt.js 3.x admin dashboard
 ├── setup.bat          # Setup script cho Windows
 ├── setup.sh           # Setup script cho Linux/Mac
 ├── README.md          # Documentation chính
@@ -84,6 +85,39 @@ npm run dev
 ```
 
 Frontend sẽ chạy tại: http://localhost:3000
+
+#### Admin Setup
+
+1. Di chuyển vào thư mục admin:
+```bash
+cd admin
+```
+
+2. Cài đặt dependencies:
+```bash
+npm install
+```
+
+3. Chạy admin dashboard:
+```bash
+npm run dev
+```
+
+Admin sẽ chạy tại: http://localhost:3011
+
+**Hoặc sử dụng script có sẵn:**
+
+**Windows:**
+```bash
+cd admin
+start-admin.bat
+```
+
+**Linux/Mac:**
+```bash
+cd admin
+./start-admin.sh
+```
 
 ## Troubleshooting
 
@@ -169,6 +203,15 @@ Xem file `frontend/TROUBLESHOOTING.md` để biết thêm chi tiết.
 - ✅ UI components với Element Plus
 - ✅ Icons với Boxicons (đã fix lỗi)
 
+### Admin Dashboard
+- ✅ Dashboard với thống kê tổng quan
+- ✅ Quản lý sản phẩm (CRUD)
+- ✅ Quản lý đơn hàng
+- ✅ Quản lý người dùng
+- ✅ Analytics và báo cáo
+- ✅ Modern UI với Nuxt UI Pro
+- ✅ Responsive design
+
 ### Backend
 - ✅ RESTful API với Express.js
 - ✅ Authentication với JWT
@@ -191,6 +234,13 @@ Xem file `frontend/TROUBLESHOOTING.md` để biết thêm chi tiết.
 - Element Plus UI components
 - VueUse utilities
 - Boxicons icons (đã fix compatibility)
+
+**Admin Dashboard:**
+- Nuxt.js 3 với TypeScript
+- Nuxt UI Pro components
+- VueUse utilities
+- Element Plus components
+- Tailwind CSS
 
 ## Lỗi đã được fix
 

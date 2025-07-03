@@ -25,8 +25,5 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  },
-  server: {
-    port: 3011
   }
 })

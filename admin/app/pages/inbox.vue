@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onMounted } from 'vue'
 import { breakpointsTailwind } from '@vueuse/core'
 import type { Mail } from '~/types'
+import { useApi } from '~/composables/useApi'
 
 const tabItems = [{
   label: 'All',
@@ -12,7 +13,24 @@ const tabItems = [{
 }]
 const selectedTab = ref('all')
 
-const { data: mails } = await useFetch<Mail[]>('/api/mails', { default: () => [] })
+const { api } = useApi()
+
+const mailsData = ref<{ mails: Array<Record<string, unknown>> } | null>(null)
+const isLoading = ref(false)
+
+const fetchMails = async () => {
+  isLoading.value = true
+  try {
+    const response = await api.get('/mails')
+    mailsData.value = response.data
+  } finally {
+    isLoading.value = false
+  }
+}
+
+onMounted(fetchMails)
+
+const mails = computed(() => mailsData.value?.mails || [])
 
 // Filter mails based on the selected tab
 const filteredMails = computed(() => {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@nuxt/ui'
+import { useAuth } from '~/composables/useAuth'
 
 defineProps<{
   collapsed?: boolean
@@ -7,33 +8,49 @@ defineProps<{
 
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
+const { user, logout } = useAuth()
+const toast = useToast()
 
 const colors = ['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']
 const neutrals = ['slate', 'gray', 'zinc', 'neutral', 'stone']
 
-const user = ref({
-  name: 'Benjamin Canac',
-  avatar: {
-    src: 'https://github.com/benjamincanac.png',
-    alt: 'Benjamin Canac'
+const handleLogout = async () => {
+  try {
+    logout()
+    
+    toast.add({
+      title: 'Đăng xuất thành công',
+      color: 'success'
+    })
+    
+    // Redirect to login
+    await navigateTo('/login')
+  } catch (error) {
+    console.error('Logout error:', error)
+    toast.add({
+      title: 'Lỗi đăng xuất',
+      color: 'error'
+    })
   }
-})
+}
 
 const items = computed<DropdownMenuItem[][]>(() => ([[{
   type: 'label',
-  label: user.value.name,
-  avatar: user.value.avatar
+  label: user.value?.name as string,
+  avatar: user.value?.avatar as any
 }], [{
   label: 'Profile',
-  icon: 'i-lucide-user'
+  icon: 'i-lucide-user',
+  to: '/settings'
 }, {
   label: 'Billing',
-  icon: 'i-lucide-credit-card'
+  icon: 'i-lucide-credit-card',
+  to: '/billing'
 }, {
   label: 'Settings',
   icon: 'i-lucide-settings',
   to: '/settings'
-}], [{
+}, {
   label: 'Theme',
   icon: 'i-lucide-palette',
   children: [{
@@ -144,8 +161,13 @@ const items = computed<DropdownMenuItem[][]>(() => ([[{
   to: 'https://ui.nuxt.com/pro/purchase',
   target: '_blank'
 }], [{
+  label: 'Help',
+  icon: 'i-lucide-help-circle',
+  to: '/help'
+}], [{
   label: 'Log out',
-  icon: 'i-lucide-log-out'
+  icon: 'i-lucide-log-out',
+  click: handleLogout
 }]]))
 </script>
 

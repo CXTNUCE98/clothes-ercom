@@ -1,40 +1,62 @@
 <script setup lang="ts">
-import type { Member } from '~/types'
-import { useAuth, getApiBaseUrl } from '~/composables/useAuth'
+import { useApi } from '~/composables/useApi'
 
-const { token } = useAuth()
-const apiBase = getApiBaseUrl()
+const { api } = useApi()
+
+const membersData = ref<{ members: Array<Record<string, unknown>> } | null>(null)
+const isLoading = ref(false)
 
 const fetchMembers = async () => {
-  return await $fetch(`${apiBase}/members`, {
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
+  isLoading.value = true
+  try {
+    const response = await api.get('/members')
+    membersData.value = response.data
+  } finally {
+    isLoading.value = false
+  }
 }
-const { data: members, refresh } = useAsyncData('members', fetchMembers)
+
+onMounted(fetchMembers)
+
+const members = computed(() => membersData.value?.members || [])
 
 const q = ref('')
 
 const filteredMembers = computed(() => {
+  if (!members.value || !Array.isArray(members.value)) {
+    return []
+  }
+  
   return members.value.filter((member) => {
-    return member.name.search(new RegExp(q.value, 'i')) !== -1 || member.username.search(new RegExp(q.value, 'i')) !== -1
+    const name = (member.name as string) || ''
+    const username = (member.username as string) || ''
+    return name.search(new RegExp(q.value, 'i')) !== -1 || username.search(new RegExp(q.value, 'i')) !== -1
   })
 })
 
 async function inviteMember(email: string, name: string) {
-  await $fetch(`${apiBase}/members/invite`, {
-    method: 'POST',
-    body: { email, name },
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
-  refresh()
+  try {
+    await $fetch(`${apiBase}/members/invite`, {
+      method: 'POST',
+      body: { email, name },
+      headers: { Authorization: `Bearer ${token.value}` }
+    })
+    await refresh()
+  } catch (error) {
+    console.error('Error inviting member:', error)
+  }
 }
 
 async function deleteMember(id: number) {
-  await $fetch(`${apiBase}/members/${id}`, {
-    method: 'DELETE',
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
-  refresh()
+  try {
+    await $fetch(`${apiBase}/members/${id}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token.value}` }
+    })
+    await refresh()
+  } catch (error) {
+    console.error('Error deleting member:', error)
+  }
 }
 </script>
 

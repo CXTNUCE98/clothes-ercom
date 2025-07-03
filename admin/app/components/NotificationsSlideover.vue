@@ -1,10 +1,26 @@
 <script setup lang="ts">
 import { formatTimeAgo } from '@vueuse/core'
-import type { Notification } from '~/types'
+import { useApi } from '~/composables/useApi'
 
 const { isNotificationsSlideoverOpen } = useDashboard()
+const { api } = useApi()
 
-const { data: notifications } = await useFetch<Notification[]>('/api/notifications')
+const notificationsData = ref<{ notifications: Array<Record<string, unknown>> } | null>(null)
+const isLoading = ref(false)
+
+const fetchNotifications = async () => {
+  isLoading.value = true
+  try {
+    const response = await api.get('/notifications')
+    notificationsData.value = response.data
+  } finally {
+    isLoading.value = false
+  }
+}
+
+onMounted(fetchNotifications)
+
+const notifications = computed(() => notificationsData.value?.notifications || [])
 </script>
 
 <template>

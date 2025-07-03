@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@nuxt/ui'
-import type { Member } from '~/types'
 
 defineProps<{
-  members: Member[]
+  members: Array<Record<string, unknown>>
 }>()
 
 const items = [{
@@ -25,7 +24,8 @@ const items = [{
     >
       <div class="flex items-center gap-3 min-w-0">
         <UAvatar
-          v-bind="member.avatar"
+          :src="(member.avatar as any)?.src"
+          :alt="(member.name as string)"
           size="md"
         />
 
@@ -34,7 +34,7 @@ const items = [{
             {{ member.name }}
           </p>
           <p class="text-muted truncate">
-            {{ member.username }}
+            {{ member.username || member.email }}
           </p>
         </div>
       </div>
@@ -42,7 +42,7 @@ const items = [{
       <div class="flex items-center gap-3">
         <USelect
           :model-value="member.role"
-          :items="['member', 'owner']"
+          :items="['member', 'owner', 'admin', 'staff']"
           color="neutral"
           :ui="{ value: 'capitalize', item: 'capitalize' }"
         />

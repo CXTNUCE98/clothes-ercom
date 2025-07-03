@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
-import { useAuth } from '~/composables/useAuth'
+import { useAuth, getApiBaseUrl } from '~/composables/useAuth'
 
 const fileRef = ref<HTMLInputElement>()
+const { token } = useAuth()
+const apiBase = getApiBaseUrl()
 
 const profileSchema = z.object({
   name: z.string().min(2, 'Too short'),
@@ -23,22 +25,30 @@ const profile = reactive<Partial<ProfileSchema>>({
   bio: undefined
 })
 const toast = useToast()
-const { token } = useAuth()
 
 onMounted(async () => {
-  const res = await $fetch('/api/admin/profile', {
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
-  Object.assign(profile, res.user)
+  try {
+    const res = await $fetch<{ user: Record<string, unknown> }>(`${apiBase}/admin/profile`, {
+      headers: { Authorization: `Bearer ${token.value}` }
+    })
+    Object.assign(profile, res.user)
+  } catch (error) {
+    console.error('Error fetching profile:', error)
+  }
 })
 
-async function onSubmit(event: FormSubmitEvent<ProfileSchema>) {
-  await $fetch('/api/admin/profile', {
-    method: 'PUT',
-    body: { name: profile.name, email: profile.email },
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
-  toast.add({ title: 'Đã cập nhật profile', color: 'success' })
+async function onSubmit(_event: FormSubmitEvent<ProfileSchema>) {
+  try {
+    await $fetch(`${apiBase}/admin/profile`, {
+      method: 'PUT',
+      body: { name: profile.name, email: profile.email },
+      headers: { Authorization: `Bearer ${token.value}` }
+    })
+    toast.add({ title: 'Đã cập nhật profile', color: 'success' })
+  } catch (error) {
+    console.error('Error updating profile:', error)
+    toast.add({ title: 'Lỗi cập nhật profile', color: 'error' })
+  }
 }
 
 async function onFileChange(e: Event) {
@@ -46,12 +56,16 @@ async function onFileChange(e: Event) {
   if (!input.files?.length) return
   // upload lên server hoặc lưu base64, ở đây chỉ demo lưu đường dẫn
   const avatar = URL.createObjectURL(input.files[0]!)
-  await $fetch('/api/admin/avatar', {
-    method: 'PUT',
-    body: { avatar },
-    headers: { Authorization: `Bearer ${token.value}` }
-  })
-  profile.avatar = avatar
+  try {
+    await $fetch(`${apiBase}/admin/avatar`, {
+      method: 'PUT',
+      body: { avatar },
+      headers: { Authorization: `Bearer ${token.value}` }
+    })
+    profile.avatar = avatar
+  } catch (error) {
+    console.error('Error updating avatar:', error)
+  }
 }
 
 function onFileClick() {

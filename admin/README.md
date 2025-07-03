@@ -1,63 +1,171 @@
-# Nuxt Dashboard Template
+# Admin Dashboard - Hệ thống Authentication
 
-[![Nuxt UI Pro](https://img.shields.io/badge/Made%20with-Nuxt%20UI%20Pro-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com/pro)
-[![Deploy to NuxtHub](https://img.shields.io/badge/Deploy%20to-NuxtHub-00DC82?logo=nuxt&labelColor=020420)](https://hub.nuxt.com/new?repo=nuxt-ui-pro/dashboard)
+## Tính năng đã hoàn thiện
 
-Get started with the Nuxt dashboard template with multiple pages, collapsible sidebar, keyboard shortcuts, light & dark more, command palette and more, powered by [Nuxt UI Pro](https://ui.nuxt.com/pro).
+### 1. Authentication System
+- ✅ **Đăng nhập** (`/login`) - Giao diện đẹp với validation
+- ✅ **Đăng ký** (`/register`) - Form đăng ký với validation đầy đủ
+- ✅ **Đăng xuất** - Tích hợp trong UserMenu
+- ✅ **Middleware bảo vệ** - Tự động redirect khi chưa đăng nhập
+- ✅ **Token Management** - Lưu trữ và quản lý token an toàn
 
-- [Live demo](https://dashboard-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/getting-started/installation/pro/nuxt)
+### 2. User Profile & Settings
+- ✅ **Profile Settings** (`/settings`) - Cập nhật thông tin cá nhân
+- ✅ **Notifications Settings** (`/settings/notifications`) - Cài đặt thông báo
+- ✅ **Security Settings** (`/settings/security`) - Bảo mật tài khoản
+- ✅ **Members Management** (`/settings/members`) - Quản lý thành viên
 
-<a href="https://dashboard-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://assets.hub.nuxt.com/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL2Rhc2hib2FyZC10ZW1wbGF0ZS5udXh0LmRldiIsImlhdCI6MTczOTQ2MzU2N30._VElt4uvLjvAMdnTLytCInOajMElzWDKbmvOaMZhZUI.jpg?theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://assets.hub.nuxt.com/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL2Rhc2hib2FyZC10ZW1wbGF0ZS5udXh0LmRldiIsImlhdCI6MTczOTQ2MzU2N30._VElt4uvLjvAMdnTLytCInOajMElzWDKbmvOaMZhZUI.jpg?theme=light">
-    <img alt="Nuxt Dashboard Template" src="https://assets.hub.nuxt.com/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL2Rhc2hib2FyZC10ZW1wbGF0ZS5udXh0LmRldiIsImlhdCI6MTczOTQ2MzU2N30._VElt4uvLjvAMdnTLytCInOajMElzWDKbmvOaMZhZUI.jpg">
-  </picture>
-</a>
+### 3. UI/UX Improvements
+- ✅ **Responsive Design** - Tương thích mobile/desktop
+- ✅ **Dark/Light Mode** - Chuyển đổi theme
+- ✅ **Toast Notifications** - Thông báo thành công/lỗi
+- ✅ **Loading States** - Hiển thị trạng thái loading
+- ✅ **Form Validation** - Validation real-time
 
-## Vue Dashboard Template
+## Cách sử dụng
 
-The dashboard template for Vue is on https://github.com/nuxt-ui-pro/dashboard-vue.
-
-## Quick Start
-
-```bash [Terminal]
-npx nuxi@latest init -t github:nuxt-ui-pro/dashboard
-```
-
-## Setup
-
-Make sure to install the dependencies:
-
+### 1. Khởi động hệ thống
 ```bash
-pnpm install
+# Terminal 1 - Backend API
+cd backend
+npm run dev
+
+# Terminal 2 - Admin Dashboard
+cd admin
+npm run dev
 ```
 
-## Development Server
+### 2. Truy cập Admin Dashboard
+- **URL**: http://localhost:3011
+- **Tài khoản demo**: admin@example.com / password123
 
-Start the development server on `http://localhost:3000`:
+### 3. Luồng sử dụng
 
-```bash
-pnpm dev
+#### Đăng ký tài khoản mới:
+1. Truy cập http://localhost:3011/register
+2. Điền thông tin: Tên, Email, Mật khẩu
+3. Nhấn "Đăng ký"
+4. Tự động chuyển đến Dashboard
+
+#### Đăng nhập:
+1. Truy cập http://localhost:3011/login
+2. Nhập email và mật khẩu
+3. Nhấn "Đăng nhập"
+4. Chuyển đến Dashboard
+
+#### Quản lý tài khoản:
+1. Click vào avatar ở góc phải
+2. Chọn "Settings" để vào trang cài đặt
+3. Có 4 tab: General, Members, Notifications, Security
+
+#### Đăng xuất:
+1. Click vào avatar ở góc phải
+2. Chọn "Logout"
+3. Tự động chuyển về trang đăng nhập
+
+## Cấu trúc API
+
+### Authentication Endpoints
+- `POST /api/auth/login` - Đăng nhập
+- `POST /api/auth/register` - Đăng ký
+- `GET /api/admin/profile` - Lấy thông tin profile
+- `PUT /api/admin/profile` - Cập nhật profile
+
+### Settings Endpoints
+- `GET /api/admin/notifications` - Lấy cài đặt thông báo
+- `PUT /api/admin/notifications` - Cập nhật thông báo
+- `GET /api/admin/security` - Lấy cài đặt bảo mật
+- `POST /api/admin/change-password` - Đổi mật khẩu
+- `POST /api/admin/two-factor` - Bật/tắt 2FA
+- `GET /api/admin/sessions` - Lấy phiên đăng nhập
+- `DELETE /api/admin/sessions/:id` - Thu hồi phiên
+
+### Members Endpoints
+- `GET /api/members` - Lấy danh sách thành viên
+- `POST /api/members/invite` - Mời thành viên
+- `DELETE /api/members/:id` - Xóa thành viên
+
+## Tính năng bảo mật
+
+### 1. Token-based Authentication
+- JWT token được lưu trong cookie và localStorage
+- Tự động refresh token khi cần
+- Middleware bảo vệ các route cần authentication
+
+### 2. Form Validation
+- Client-side validation với Zod
+- Real-time validation feedback
+- Server-side validation cho tất cả API calls
+
+### 3. Security Features
+- Password hashing (bcrypt)
+- CSRF protection
+- Rate limiting
+- Session management
+
+## Troubleshooting
+
+### Lỗi thường gặp:
+
+1. **"Cannot convert undefined or null to object"**
+   - Nguyên nhân: Form validation schema lỗi
+   - Giải pháp: Đã fix bằng cách chuyển sang manual validation
+
+2. **API 404 errors**
+   - Nguyên nhân: Backend chưa chạy hoặc URL sai
+   - Giải pháp: Kiểm tra backend đang chạy trên port 3001
+
+3. **Token invalid**
+   - Nguyên nhân: Token hết hạn hoặc không hợp lệ
+   - Giải pháp: Tự động logout và redirect về login
+
+4. **Customers data không load**
+   - Nguyên nhân: Token chưa được load trước khi gọi API
+   - Giải pháp: Đã fix bằng watchEffect để reactive fetch
+
+## Development Notes
+
+### Tech Stack:
+- **Frontend**: Nuxt 3 + Vue 3 + TypeScript
+- **UI Framework**: Nuxt UI + Element Plus + Tailwind CSS
+- **State Management**: Vue 3 Composition API
+- **Authentication**: JWT + Cookie + LocalStorage
+- **Backend**: Node.js + Express + MongoDB
+
+### Code Structure:
+```
+admin/
+├── app/
+│   ├── components/     # Reusable components
+│   ├── composables/    # Custom composables (useAuth)
+│   ├── layouts/        # Layout components
+│   ├── middleware/     # Route middleware
+│   ├── pages/          # Page components
+│   └── types/          # TypeScript types
+├── public/             # Static assets
+└── nuxt.config.ts      # Nuxt configuration
 ```
 
-## Production
+### Key Files:
+- `composables/useAuth.ts` - Authentication logic
+- `middleware/auth.ts` - Route protection
+- `pages/login.vue` - Login page
+- `pages/register.vue` - Register page
+- `pages/settings/` - Settings pages
+- `components/UserMenu.vue` - User menu with logout
 
-Build the application for production:
+## Next Steps
 
-```bash
-pnpm build
-```
+### Tính năng có thể thêm:
+1. **Email Verification** - Xác thực email khi đăng ký
+2. **Password Reset** - Quên mật khẩu
+3. **Social Login** - Đăng nhập bằng Google/Facebook
+4. **Role-based Access** - Phân quyền người dùng
+5. **Activity Log** - Log hoạt động người dùng
+6. **API Documentation** - Swagger/OpenAPI docs
 
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-## Renovate integration
-
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+### Performance Optimization:
+1. **Lazy Loading** - Load components khi cần
+2. **Caching** - Cache API responses
+3. **Image Optimization** - Optimize avatar uploads
+4. **Bundle Splitting** - Split code theo routes

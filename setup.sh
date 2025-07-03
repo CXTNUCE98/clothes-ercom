@@ -40,6 +40,17 @@ fi
 
 echo "Frontend setup completed!"
 echo ""
+echo "Setting up Admin..."
+cd ../admin
+echo "Installing admin dependencies..."
+npm install
+if [ $? -ne 0 ]; then
+    echo "Error installing admin dependencies"
+    exit 1
+fi
+
+echo "Admin setup completed!"
+echo ""
 echo "========================================"
 echo "Setup completed successfully!"
 echo "========================================"
@@ -47,7 +58,9 @@ echo ""
 echo "To run the project:"
 echo "1. Start backend: cd backend && npm run dev"
 echo "2. Start frontend: cd frontend && npm run dev"
+echo "3. Start admin: cd admin && npm run dev"
 echo ""
 echo "Backend will run on: http://localhost:3001"
 echo "Frontend will run on: http://localhost:3000"
+echo "Admin will run on: http://localhost:3011"
 echo "" 
